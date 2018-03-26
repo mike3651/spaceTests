@@ -1,0 +1,12 @@
+#messages {
+    position: absolute;
+    top:150px;
+    left:500px;
+    z-index: 1;
+    color: white;
+    font-size: 128px;
+}
+
+body {
+    background-color: black;
+}
