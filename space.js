@@ -1,13 +1,24 @@
+
+// Allows us to use animation frames with the canvas
 window.requestAnimFrame = (function() {
     return window.requestAnimationFrame
 })();
 
-
+// keeps track of the context from the canvas
 var canvas;
 var context;
-var iterate = 0;
 var messages = ["Do", "You", "Know", "The", "Way", "My", "Bruddah?"];
 var changeColorTimer = 0;
+
+// State of warping the frame
+var warped = false;
+
+// Keeps track of the bubbles and bubble 
+var bubbles = [], bubble;
+
+var iterate = 0;
+
+// Randomize the RGB values
 var r = Math.round(Math.random() * 255);
 var g = Math.round(Math.random() * 255);
 var b = Math.round(Math.random() * 255);
@@ -15,7 +26,6 @@ var b = Math.round(Math.random() * 255);
 window.onload = function() {
     canvas = document.getElementById("spaceCraft");
     context = canvas.getContext("2d");
-    focalLength = canvas.width * 2;
     initializeBubbles();
     executeFrame();
     setInterval(function() {
@@ -31,16 +41,9 @@ window.onload = function() {
     });
 }
 
-var radius = '0.' + Math.floor(Math.random() * 9) + 1;
-var centerX, centerY;
-
-var warped = false;
-
-var bubbles = [], buble;
-
+// Renders a frame onto our canvas
 function executeFrame() {
     requestAnimationFrame(executeFrame);
-    
     checkLocation();
     drawBubbles();
 }
@@ -92,7 +95,6 @@ function drawBubbles() {
         context.fillStyle = "rgba(0, 10, 20, 1)";
         context.fillRect(0, 0, canvas.width, canvas.height);
     }
-    context.fillStyle = "rgba(209, 255, 255, " + radius + ")";
     for(var i = 0; i < bubbles.length; i++) {
         bubble = bubbles[i];
         context.beginPath();
